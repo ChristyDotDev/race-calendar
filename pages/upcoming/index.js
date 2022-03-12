@@ -11,7 +11,7 @@ const seriesCalendars = [
     cal: "https://calendar.google.com/calendar/ical/fa9bjl6tu13dd10b066stoo5do%40group.calendar.google.com/public/basic.ics",
   },
   {
-    series: "Formula E",
+    series: "ABB FIA Formula E",
     cal: "https://calendar.google.com/calendar/ical/vno0ntshopq0nmob26db2pcen8%40group.calendar.google.com/public/basic.ics",
   },
   {
@@ -26,9 +26,57 @@ const seriesCalendars = [
     series: "NTT IndyCar Series",
     cal: "http://www.google.com/calendar/ical/hlskhf7l8ce7btind39bb9kf1o%40group.calendar.google.com/public/basic.ics",
   },
+  {
+    series: "Misc",
+    cal: "https://www.google.com/calendar/ical/76fdr76289paph73v5tjt6mpis%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "FIA World Rallycross Championship",
+    cal: "https://www.google.com/calendar/ical/l61t6l5vpoihhie0o6df4j5h20%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "Extreme E",
+    cal: "https://calendar.google.com/calendar/ical/4th6rmpe52qpjvmfuq4p41vgvo%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "British Touring Car Championship",
+    cal: "http://www.google.com/calendar/ical/9onbjrejbcstdm524hi0ush2t8%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "SRO Fanatec GT World Challenge Europe",
+    cal: "http://www.google.com/calendar/ical/drne83rrmn7m9baje25qh2248s%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "SRO Fanatec GT World Challenge Asia",
+    cal: "https://calendar.google.com/calendar/ical/plm3evhsd30l34r2tj68fh9mss%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "Super GT",
+    cal: "http://www.google.com/calendar/ical/5ni9rjbofnkfvmpidmjpep9ek0%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "IMSA WeatherTech Sportscar",
+    cal: "http://www.google.com/calendar/ical/njulhksvo83qeoruc3nhend9js%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "FIA World Endurance Championship",
+    cal: "http://www.google.com/calendar/ical/61jccgg4rshh1temqk0dj4lens%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "Cup Series",
+    cal: "http://www.google.com/calendar/ical/db8c47ne2bt9qbld2mhdabm0u8%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "Xfinity Series",
+    cal: "http://www.google.com/calendar/ical/po54lfbfrvlkrrhirlame40a6c%40group.calendar.google.com/public/basic.ics",
+  },
+  {
+    series: "FIA Formula 2",
+    cal: "http://www.google.com/calendar/ical/rttoqh7u6m247f2ub6c05m4pe4%40group.calendar.google.com/public/basic.ics",
+  }
 ];
 
-const DAYS_TO_SHOW = 14;
+const DAYS_TO_SHOW = 7;
 
 function Upcoming({ eventList }) {
   const upcomingEvents = eventList.filter((event) => {
@@ -46,7 +94,10 @@ function Upcoming({ eventList }) {
             <div className="col-md-4" key={event.summary}>
               <div className="card mb-4 box-shadow">
                 <div className="card-body">
-                  <h3>{new Date(event.start).toLocaleDateString()} - {event.summary}</h3>
+                  <h3>
+                    {new Date(event.start).toLocaleDateString()} -{" "}
+                    {event.summary}
+                  </h3>
                   <h6>{event.location}</h6>
                 </div>
               </div>
