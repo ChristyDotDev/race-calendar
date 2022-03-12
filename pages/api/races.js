@@ -14,6 +14,12 @@ const seriesCalendars = [
   },{
     "series": "SRO Intercontinental GT Challenge",
     "cal": "https://calendar.google.com/calendar/ical/kcelko7ictk6okcf4peougahlo%40group.calendar.google.com/public/basic.ics"
+  },{
+    "series": "SRO Fanatec GT World Challenge America",
+    "cal": "https://www.google.com/calendar/ical/1g47v5qu33g114060qa1ula9d0%40group.calendar.google.com/public/basic.ics"
+  },{
+    "series": "NTT IndyCar Series",
+    "cal": "http://www.google.com/calendar/ical/hlskhf7l8ce7btind39bb9kf1o%40group.calendar.google.com/public/basic.ics"
   }
 ]
 
@@ -23,7 +29,6 @@ async function getEvents(calUrl, seriesName){
   const directEvents = ical.sync.parseICS(calData.data);
   let parsedEvents = []
   Object.entries(directEvents).forEach(([key, value]) => {
-    console.log(key, value.summary)
     if(value.start > Date.now()){
       parsedEvents.push({
         "series": seriesName,
@@ -34,20 +39,19 @@ async function getEvents(calUrl, seriesName){
       });
     }
   })
-  parsedEvents.sort((a, b) => {
-    return a.start - b.start
-  })
+  
   
   return parsedEvents
 }
 
 export default async function handler(req, res) {
-  let eventsParsed = {}
+  let eventList = []
   for (let i = 0; i < seriesCalendars.length; i++) {
     let events = await getEvents(seriesCalendars[i].cal, seriesCalendars[i].series)
-    
-    eventsParsed[seriesCalendars[i].series] = events
+    eventList = eventList.concat(events);
   }
-  console.log(eventsParsed);
-  res.status(200).json(eventsParsed)
+  eventList.sort((a, b) => {
+    return a.start - b.start
+  })
+  res.status(200).json(eventList)
 }
