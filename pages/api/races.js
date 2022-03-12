@@ -17,7 +17,7 @@ const seriesCalendars = [
   }
 ]
 
-async function getEvents(calUrl){
+async function getEvents(calUrl, seriesName){
   //parse ical contents from URL
   const calData = await axios.get(calUrl);
   const directEvents = ical.sync.parseICS(calData.data);
@@ -26,6 +26,7 @@ async function getEvents(calUrl){
     console.log(key, value.summary)
     if(value.start > Date.now()){
       parsedEvents.push({
+        "series": seriesName,
         "summary": value.summary,
         "start": value.start,
         "end": value.end,
@@ -43,7 +44,8 @@ async function getEvents(calUrl){
 export default async function handler(req, res) {
   let eventsParsed = {}
   for (let i = 0; i < seriesCalendars.length; i++) {
-    let events = await getEvents(seriesCalendars[i].cal)
+    let events = await getEvents(seriesCalendars[i].cal, seriesCalendars[i].series)
+    
     eventsParsed[seriesCalendars[i].series] = events
   }
   console.log(eventsParsed);
