@@ -32,7 +32,6 @@ const DAYS_TO_SHOW = 14;
 
 function Upcoming({ eventList }) {
   const upcomingEvents = eventList.filter((event) => {
-    console.log(new Date(event.start) - new Date());
     return (
       new Date(event.start) < Date.now() + 1000 * 60 * 60 * 24 * DAYS_TO_SHOW
     );
@@ -40,21 +39,15 @@ function Upcoming({ eventList }) {
 
   return (
     <div className="upcoming">
-      <head>
-        <title>Upcoming</title>
-      </head>
       <div className="container">
         <h1>Upcoming Events (Next {DAYS_TO_SHOW} Days)</h1>
         <div className="row">
           {upcomingEvents.map((event) => (
-            <div className="col-md-4">
+            <div className="col-md-4" key={event.summary}>
               <div className="card mb-4 box-shadow">
                 <div className="card-body">
-                  <p>{new Date(event.start).toLocaleDateString()}</p>
-                  <h3>{event.series}</h3>
-                  <h4>{event.summary}</h4>
-                  <p>{event.location}</p>
-                  <p>=======================</p>
+                  <h3>{new Date(event.start).toLocaleDateString()} - {event.summary}</h3>
+                  <h6>{event.location}</h6>
                 </div>
               </div>
             </div>
