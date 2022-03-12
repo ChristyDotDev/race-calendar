@@ -26,7 +26,6 @@ async function getEvents(calUrl){
     console.log(key, value.summary)
     if(value.start > Date.now()){
       parsedEvents.push({
-        "series": key,
         "summary": value.summary,
         "start": value.start,
         "end": value.end,
