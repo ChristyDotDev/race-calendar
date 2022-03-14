@@ -8,7 +8,7 @@ const seriesCalendars = [
   },
   {
     series: "Formula 1",
-    cal: "https://calendar.google.com/calendar/ical/fa9bjl6tu13dd10b066stoo5do%40group.calendar.google.com/public/basic.ics",
+    cal: "https://files-f1.motorsportcalendars.com/f1-calendar_p1_p2_p3_qualifying_sprint_gp.ics?t=1647268743053",
   },
   {
     series: "ABB FIA Formula E",
