@@ -109,5 +109,6 @@ export default async function handler(req, res) {
   eventList.sort((a, b) => {
     return a.start - b.start;
   });
+  res.setHeader('Cache-Control', 's-maxage=43200, stale-while-revalidate=86400')
   res.status(200).json(eventList);
 }
